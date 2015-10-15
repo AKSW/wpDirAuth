@@ -63,7 +63,7 @@ Description: WordPress Directory Authentication (LDAP/LDAPS).
              Apache Directory, Microsoft Active Directory, Novell eDirectory,
              Sun Java System Directory Server, etc.
              Originally revived and upgraded from a patched version of wpLDAP.
-Version: 1.7.6
+Version: 1.7.9
 Author: Paul Gilzow
 Author URI: http://gilzow.com/
 */
@@ -71,7 +71,7 @@ Author URI: http://gilzow.com/
 /**
  * wpDirAuth version.
  */
-define('WPDIRAUTH_VERSION', '1.7.6');
+define('WPDIRAUTH_VERSION', '1.7.9');
 
 /**
  * wpDirAuth signature.
