@@ -142,11 +142,14 @@ In other words, a classic case of `pimp my lib'` (hopefully for the better).
 * wpLDAP Patch: <http://www.pkrinternet.com/~rbulling/private/wpLDAP-1.02-ssl.patch>
 == Changelog ==
 = 1.7.9 =
-The plugin no longer automatically creates accounts for directory-authenticated users who log into the site.  You can enable this behavior in the plugin settings, but it is no longer the default behavior.  Not sure why but I never set the plugin up to block Directory-Authenticated users from attempting to use the wordpress builtin password reset tool.  It can't actually change the password, but it definitely caused confusion among users.  wpDirAuth now blocks directory-authenticated users from using the password reset tool.  Removed a bunch of deprecated function calls. Cleaned up some of the debugging messages.
-PLEASE NOTE Beta testers of the 1.7.X branch prior to version 1.7.5, you will need to deactivate wpdirauth before you updgrade to this latest version. Once you have installed and network activated the plugin, it will copy your options from their previous location to the sitemeta table. You will only need to do this once. This will also work for anyone who was using the 1.6.X branch or older and plans on using it in MULTISITE mode.
+* The plugin no longer automatically creates accounts for directory-authenticated users who log into the site.  You can enable this behavior in the plugin settings, but it is no longer the default behavior.
+* Not sure why but I never set the plugin up to block Directory-Authenticated users from attempting to use the wordpress builtin password reset tool.  It can't actually change the password, but it definitely caused confusion among users.  wpDirAuth now blocks directory-authenticated users from using the password reset tool.
+* Removed a bunch of deprecated function calls.
+* Cleaned up some of the debugging messages.
 = 1.7.6 =
 Corrected situation where a new authenticated user logging into a child site in a multisite network was added to the parent site, instead of the child site where they initiated the login. Also, somewhere along the way, I reintroduced a bug that when using authentication groups, the plugin would fail to redirect a successfully logged in user.
 = 1.7.5 =
+* PLEASE NOTE Beta testers of the 1.7.X branch prior to version 1.7.5, you will need to deactivate wpdirauth before you updgrade to this latest version. Once you have installed and network activated the plugin, it will copy your options from their previous location to the sitemeta table. You will only need to do this once. This will also work for anyone who was using the 1.6.X branch or older and plans on using it in MULTISITE mode.
 * MULTISITE support, bug fixes, security enhancements
 = 1.6.1 = 
 * Corrected a bug that would prevent user profiles from successfully being found. Thanks go to jgiangrande for identifying the problem area.
