@@ -1108,7 +1108,7 @@ ________EOS;
 	 * @return boolean Return format as expected by WP's profile_update()
 	 */
 	function wpDirAuth_profileUpdate($userID){
-		if (intval($_POST['wpDirAuthTOS']) === 1) {
+		if (isset($_POST['wpDirAuthTOS']) && intval($_POST['wpDirAuthTOS']) === 1) {
 			update_user_meta($userID, 'wpDirAuthTOS', date('Y-m-d H:i:s'));
 		}
 		return true;
