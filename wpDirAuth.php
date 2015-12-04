@@ -2066,7 +2066,7 @@ ________EOS;
 			add_users_page(
 				'Add Directory Authentication Users',
 				'Add Directory Authenticated User',
-				'administrator',
+				'create_users',
 				basename(__FILE__),
 				'wpDirAuth_add_user_panel'
 			);
