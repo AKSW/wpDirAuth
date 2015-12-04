@@ -58,6 +58,8 @@ Installing should be a piece of cake and take fewer than ten minutes, provided
 you know your directory server(s) information, and that your blog is allowed to
 connect and bind to it/them.
 Please refer to your friendly neighbourhood LDAP sysadmin for more information.
+Or use a LDAP browser (e.g. Apache Directory Studio) to test/research what your
+specific connections settings need to be.
 1. Upload the `wpDirAuth` directory to the `/wp-content/plugins/` directory.
 1. Login to your WordPress instance as an admin user.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
