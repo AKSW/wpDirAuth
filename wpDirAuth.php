@@ -204,7 +204,7 @@ ________EOS;
 			add_options_page(
 				'Directory Authentication Options: Plugin Conflict',
 				'!! Directory Auth. !!',
-				9,
+				'manage_options',
 				basename(__FILE__),
 				'wpDirAuth_safeConflictMessage'
 			);
@@ -953,7 +953,7 @@ ________EOS;
 			$strWpAdminPage = add_options_page(
 				'Directory Authentication Options',
 				'Directory Auth.',
-				9,
+				'manage_options',
 				basename(__FILE__),
 				'wpDirAuth_optionsPanel'
 			);
