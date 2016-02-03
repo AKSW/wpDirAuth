@@ -15,7 +15,7 @@
  * Originally forked from a patched version of wpLDAP.
  *
  * @package wpDirAuth
- * @version 1.7.8
+ * @version 1.7.10
  * @see http://wpdirauth.gilzow.com/
  * @license GPL <http://www.gnu.org/licenses/gpl.html>
  *
