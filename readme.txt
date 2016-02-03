@@ -2,8 +2,8 @@
 Contributors: gilzow, stephdau, apokalyptik
 Tags: login, authentication, directory, ldap, ldaps
 Requires at least: 2.2
-Tested up to: 4.3.1
-Stable tag: 1.7.9
+Tested up to: 4.4.2
+Stable tag: 1.7.10
 WordPress directory authentication plugin through LDAP and LDAPS (SSL).
 == Description ==
 Please see changelog below for recent updates/changes.
@@ -143,6 +143,8 @@ In other words, a classic case of `pimp my lib'` (hopefully for the better).
 * Original: wpLDAP: <http://ashay.org/?page_id=133>
 * wpLDAP Patch: <http://www.pkrinternet.com/~rbulling/private/wpLDAP-1.02-ssl.patch>
 == Changelog ==
+= 1.7.10 =
+Bug fixes and minor clean-up
 = 1.7.9 =
 * The plugin no longer automatically creates accounts for directory-authenticated users who log into the site.  You can enable this behavior in the plugin settings, but it is no longer the default behavior.
 * Not sure why but I never set the plugin up to block Directory-Authenticated users from attempting to use the wordpress builtin password reset tool.  It can't actually change the password, but it definitely caused confusion among users.  wpDirAuth now blocks directory-authenticated users from using the password reset tool.
