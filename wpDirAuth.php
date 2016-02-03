@@ -63,7 +63,7 @@ Description: WordPress Directory Authentication (LDAP/LDAPS).
              Apache Directory, Microsoft Active Directory, Novell eDirectory,
              Sun Java System Directory Server, etc.
              Originally revived and upgraded from a patched version of wpLDAP.
-Version: 1.7.9
+Version: 1.7.10
 Author: Paul Gilzow
 Author URI: http://gilzow.com/
 */
@@ -71,7 +71,7 @@ Author URI: http://gilzow.com/
 /**
  * wpDirAuth version.
  */
-define('WPDIRAUTH_VERSION', '1.7.9');
+define('WPDIRAUTH_VERSION', '1.7.10');
 
 /**
  * wpDirAuth signature.
@@ -360,7 +360,8 @@ else {
 		global $error, $pwd;
 
 		$errorTitle = WPDIRAUTH_ERROR_TITLE;
-		$isInDirectory = false;
+		$isInDirectory  = false;
+		$results        = false;
 		$controllers      = explode(',', get_site_option('dirAuthControllers'));
 		$baseDn           = get_site_option('dirAuthBaseDn');
 		$preBindUser      = get_site_option('dirAuthPreBindUser');
@@ -508,13 +509,12 @@ else {
 
 			/**
 			 * Search for profile, if still needed.
-			 * @see $results in preceding loop: Use case 3
+			 * $result is set to false by default. reset to a resource or false again in lines 403-437
+			 * wpDirAuth_retrieveUserDetails() now checks the value of $results before continuing
 			 */
-			if (!$results){
-				return wpDirAuth_retrieveUserDetails($connection,$baseDn,$filterQuery);
-			} else {
-				return wpDirAuth_retrieveUserDetails($connection,$baseDn,$filterQuery,$results);
-			}
+
+			return wpDirAuth_retrieveUserDetails($connection,$baseDn,$filterQuery,$results);
+
 		}
 	}
 
@@ -1200,7 +1200,6 @@ ________EOS;
 					/**
 					 * Passed directory signin, so create a new WP user
 					 */
-					require_once(ABSPATH . WPINC . '/registration.php');
 
 					$userLogin = sanitize_user($username);
 					$userEmail = apply_filters('user_registration_email', $userData['email']);
@@ -1232,7 +1231,7 @@ ________EOS;
 
 						if ($userID = wp_create_user($userLogin, $password, $userEmail)) {
 							$userData['ID'] = $userID;
-							$tmpAr = split('@',$userData['email']);
+							$tmpAr = explode('@',$userData['email']);
 							$userData['nickname'] =  str_replace('.','_',$tmpAr[0]);
 							$userData['display_name'] = $userData['first_name'].' '.$userData['last_name'];
 							unset($userData['email']);
@@ -1480,10 +1479,10 @@ ________EOS;
 	 * ));
 	 * of course, we'll need to somehow require at least the email key since we need that one in order to add the user.
 	 */
-	function wpDirAuth_retrieveUserDetails($rscConnection,$strBaseDn,$strFilterQuery,$rscResult=NULL){
+	function wpDirAuth_retrieveUserDetails($rscConnection,$strBaseDn,$strFilterQuery,$rscResult=false){
 		//now that we have a valid connection and are bound, we need to find the user.
 
-		if(is_null($rscResult)){
+		if(is_bool($rscResult) && false === $rscResult){
 			$rscResult = ldap_search($rscConnection,$strBaseDn,$strFilterQuery,unserialize(WPDIRAUTH_LDAP_RETURN_KEYS));
 		}
 
@@ -2101,9 +2100,9 @@ ________EOS;
 
 	function wpDirAuth_cookieExpire($intExpireTime,$intUserID,$boolRemember)
 	{
-		_wpdirauth_log($intUserID,'the user id');
-		_wpdirauth_log($intExpireTime,'the expiration time');
-		_wpdirauth_log($boolRemember,'whether or not to remember the user');
+		//_wpdirauth_log($intUserID,'the user id');
+		//_wpdirauth_log($intExpireTime,'the expiration time');
+		//_wpdirauth_log($boolRemember,'whether or not to remember the user');
 
 		if(1 == get_user_meta($intUserID,'wpDirAuthFlag',true)){
 			/**
@@ -2272,5 +2271,3 @@ if(!function_exists('_wpdirauth_log')){
 		}
 	}
 }
-
-?>
