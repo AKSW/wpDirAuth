@@ -100,7 +100,7 @@ define('WPDIRAUTH_ALLOWED_TAGS', '<a><strong><em><p><ul><ol><li>');
 
 define('WPDIRAUTH_ERROR_TITLE',__('<strong>Directory Authentication Error</strong>: '));
 
-define('WPDIRAUTH_LDAP_RETURN_KEYS',serialize(array('sn', 'givenname', 'mail')));
+define('WPDIRAUTH_LDAP_RETURN_KEYS',serialize(array('sn', 'givenname', 'mail', 'memberOf')));
 
 define('WPDIRAUTH_EMAIL_NEWUSER_NOTIFY','You have been added to the site %s as %s %s. You may login to the site using your institution\'s %s (%s) and password at the following address: %s');
 
@@ -260,8 +260,10 @@ else {
 	function wpDirAuth_bindTest(&$connection, &$username, &$password,$baseDn)
 	{
 		$password = strtr($password, array("\'"=>"'"));
+		if (strlen($username)===0) return false;
 		if ( ($isBound = @ldap_bind($connection, $username, $password)) === false ) {
 			// @see http://weblogs.valsania.it/andreav/2008/07/24/wpdirauth-14-patch/
+			if (strpos($username,"=")===false)
 			$isBound = @ldap_bind($connection,"uid=$username,$baseDn", $password);
 		}
 		return $isBound;
@@ -477,6 +479,17 @@ else {
 				$aryAuthGroupsDN = array();
 				$aryAuthGroups = explode(',',$strAuthGroups);
 				$aryAttribs = array('distinguishedname');
+				if($results) {
+					$userData = wpDirAuth_retrieveUserDetails($connection,$baseDn,$filterQuery,$results);
+					foreach($aryAuthGroups as $strAuthGroup){
+						$strAuthGroup = 'cn='.$strAuthGroup;
+						if (count(preg_grep("/^".preg_quote($strAuthGroup).",/",(array)$userData['groups']))>0) {
+							return $userData;
+						}
+					}
+					return new WP_Error('not_member_of_auth_group',$errorTitle
+					          . __('User authenticated but is not a member of an Authentication Group(s)'));
+				}
 				foreach($aryAuthGroups as $strAuthGroup){
 					$strAuthGroup = 'cn='.$strAuthGroup;
 					$rscLDAPSearch = ldap_search($connection,$baseDn,$strAuthGroup,$aryAttribs);
@@ -1515,7 +1528,8 @@ ________EOS;
 				return array(
 					'email'      => $strEmail,
 					'last_name'  => $strLastName,
-					'first_name' => $strFirstName
+					'first_name' => $strFirstName,
+					'groups'     => (array)$aryUserDetails[0]['memberof']
 				);
 			}
 		}
