@@ -57,15 +57,15 @@
 /*
 PLUGIN META INFO FOR WORDPRESS LISTINGS
 Plugin Name: wpDirAuth
-Plugin URI:  http://wpdirauth.gilzow.com/
+Plugin URI:  https://github.com/AKSW/wpDirAuth
 Description: WordPress Directory Authentication (LDAP/LDAPS).
              Works with most LDAP enabled directory services, such as OpenLDAP,
              Apache Directory, Microsoft Active Directory, Novell eDirectory,
              Sun Java System Directory Server, etc.
              Originally revived and upgraded from a patched version of wpLDAP.
-Version: 1.7.10
-Author: Paul Gilzow
-Author URI: http://gilzow.com/
+Version: 8.1.7.10
+Author: Paul Gilzow & AKSW
+Author URI: http://aksw.org/
 */
 
 /**
