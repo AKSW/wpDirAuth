@@ -63,7 +63,7 @@ Description: WordPress Directory Authentication (LDAP/LDAPS).
              Apache Directory, Microsoft Active Directory, Novell eDirectory,
              Sun Java System Directory Server, etc.
              Originally revived and upgraded from a patched version of wpLDAP.
-Version: 8.1.7.10
+Version: 8.1.7.10.1
 Author: Paul Gilzow & AKSW
 Author URI: http://aksw.org/
 */
@@ -625,7 +625,7 @@ ____________EOS;
 				$boolUseGroups = 1;
 				if(1 == $boolAutoRegister){
 					//they are using authgroups, but they also want us to autoregister. sorry, cant do that.
-					$boolAutoRegister = 0;
+					//$boolAutoRegister = 0;
 				}
 			}
 
@@ -733,7 +733,7 @@ ____________EOS;
 		 * If they are using authentication groups we will not automaticaly register authed users that dont already have an account
 		 */
 		if('' != $strAuthGroups && $boolAutoRegister == 1){
-			$boolAutoRegister = 0;
+			//$boolAutoRegister = 0;
 		}
 
 		/*
@@ -819,8 +819,8 @@ ____________EOS;
                         <li>
                             <label for="dirAuthAutoRegistration"><strong>Automatically Register Authenticated Users?</strong></label>
                             <p style="max-width:800px; font-style: italic; margin: 0 0 5px 0;">If a user authenticates successfully, but does not already have an account for the site, should wpDirAuth automatically create a new user
-                            account for the authenticated user, and assign them to the lowest possible role? Note that this setting has no affect if you are using 
-                            <a href="#dirAuthGroups">Authentication Groups</a>.</p>
+                            account for the authenticated user, and assign them to the lowest possible role? <!-- Note that this setting has no affect if you are using
+                            <a href="#dirAuthGroups">Authentication Groups</a>. --></p>
                             <input type="radio" name="dirAuthAutoRegistration" value="1" $strYesAutoRegister /> Yes &nbsp;
                             <input type="radio" name="dirAuthAutoRegistration" value="0" $strNoAutoRegister /> No &nbsp;
                             
