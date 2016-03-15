@@ -3,7 +3,7 @@ Contributors: gilzow, stephdau, apokalyptik
 Tags: login, authentication, directory, ldap, ldaps
 Requires at least: 2.2
 Tested up to: 4.4.2
-Stable tag: 1.7.10
+Stable tag: 1.7.11
 WordPress directory authentication plugin through LDAP and LDAPS (SSL).
 == Description ==
 Please see changelog below for recent updates/changes.
@@ -143,6 +143,8 @@ In other words, a classic case of `pimp my lib'` (hopefully for the better).
 * Original: wpLDAP: <http://ashay.org/?page_id=133>
 * wpLDAP Patch: <http://www.pkrinternet.com/~rbulling/private/wpLDAP-1.02-ssl.patch>
 == Changelog ==
+= 1.7.11 =
+Adding stripslashes_deep because wordpress.
 = 1.7.10 =
 Bug fixes and minor clean-up
 = 1.7.9 =
