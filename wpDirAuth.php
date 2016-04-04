@@ -1616,7 +1616,7 @@ ________EOS;
         /**
          * @TODO ask Stephen why he's replacing .'s with _'s in the user name of the email address. Does nickname not allow spaces?
          */
-        $tmpAr = split('@',$aryUserDetails['email']);
+        $tmpAr = explode('@',$aryUserDetails['email']);
         $aryUserDetails['nickname'] =  str_replace('.','_',$tmpAr[0]);
         $aryUserDetails['display_name'] = $aryUserDetails['first_name'].' '.$aryUserDetails['last_name'];
         $aryUserDetails['role'] = $strRole;
