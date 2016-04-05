@@ -71,7 +71,7 @@ Author URI: http://gilzow.com/
 /**
  * wpDirAuth version.
  */
-define('WPDIRAUTH_VERSION', '1.7.12');
+define('WPDIRAUTH_VERSION', '1.7.12'); 
 
 /**
  * wpDirAuth signature.
