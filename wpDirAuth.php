@@ -2065,12 +2065,19 @@ ________EOS;
         add_filter('auth_cookie_expiration','wpDirAuth_cookieExpire',10,3);
     }
 
+    /**
+     * Callback function to add wpdirauth add user panel to users panel
+     *
+     * 20160426 - something changed in wordpress roles & caps as of 4.4.2. role create_users no longer allows admins who
+     * do not posses super-admin privelege to see the menu item.  changing the cap to add_users allows it to function
+     * but i dont know WHY, which I *do* *not* *like*.
+     */
     function wpDirAuth_add_users_page(){
         if(function_exists('add_users_page')){
             add_users_page(
                 'Add Directory Authentication Users',
                 'Add Directory Authenticated User',
-                'create_users',
+                'add_users',
                 basename(__FILE__),
                 'wpDirAuth_add_user_panel'
             );
