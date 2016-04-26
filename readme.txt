@@ -3,7 +3,7 @@ Contributors: gilzow, stephdau, apokalyptik
 Tags: login, authentication, directory, ldap, ldaps
 Requires at least: 2.2
 Tested up to: 4.5
-Stable tag: 1.7.14
+Stable tag: 1.7.15
 WordPress directory authentication plugin through LDAP and LDAPS (SSL).
 == Description ==
 Please see changelog below for recent updates/changes.
@@ -143,6 +143,8 @@ In other words, a classic case of `pimp my lib'` (hopefully for the better).
 * Original: wpLDAP: <http://ashay.org/?page_id=133>
 * wpLDAP Patch: <http://www.pkrinternet.com/~rbulling/private/wpLDAP-1.02-ssl.patch>
 == Changelog ==
+= 1.7.15 =
++ let's try this again. filter wpdirauth_filterquery will pass THREE parameters: current AD filter, the account filter as set in the wpDirAuth settings and the username of the person attempting to authenticate. Callback function must pass back a valid AD filter.
 = 1.7.14 =
 + Why no 1.7.13? Because I'm superstitious.
 + Added hookable filter wpdirauth_filterquery. Will pass 2 parameters: the current AD filter and the username of the person attempting to authenticate. Callback function must pass back a valid AD filter.
