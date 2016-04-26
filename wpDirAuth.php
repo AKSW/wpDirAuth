@@ -15,7 +15,7 @@
  * Originally forked from a patched version of wpLDAP.
  *
  * @package wpDirAuth
- * @version 1.7.12
+ * @version 1.7.14
  * @see http://wpdirauth.gilzow.com/
  * @license GPL <http://www.gnu.org/licenses/gpl.html>
  *
@@ -63,7 +63,7 @@ Description: WordPress Directory Authentication (LDAP/LDAPS).
              Apache Directory, Microsoft Active Directory, Novell eDirectory,
              Sun Java System Directory Server, etc.
              Originally revived and upgraded from a patched version of wpLDAP.
-Version: 1.7.12
+Version: 1.7.14
 Author: Paul Gilzow
 Author URI: http://gilzow.com/
 */
@@ -71,7 +71,7 @@ Author URI: http://gilzow.com/
 /**
  * wpDirAuth version.
  */
-define('WPDIRAUTH_VERSION', '1.7.12'); 
+define('WPDIRAUTH_VERSION', '1.7.14');
 
 /**
  * wpDirAuth signature.
@@ -389,6 +389,8 @@ else {
         if (!$filter) $filter = WPDIRAUTH_DEFAULT_FILTER;
 
         $filterQuery = "($filter=$username)";
+
+        $filterQuery = apply_filters('wpdirauth_filterquery',$filterQuery,$username);
 
         $controllers = wpDirAuth_shuffleControllers($controllers);
 
