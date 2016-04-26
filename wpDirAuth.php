@@ -390,7 +390,7 @@ else {
 
         $filterQuery = "($filter=$username)";
 
-        $filterQuery = apply_filters('wpdirauth_filterquery',$filterQuery,$username);
+        $filterQuery = apply_filters('wpdirauth_filterquery',$filterQuery,$filter,$username);
 
         $controllers = wpDirAuth_shuffleControllers($controllers);
 
